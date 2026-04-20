@@ -1,0 +1,37 @@
+services:
+  api:
+    container_name: LanchoneteGood
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      -  4652:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: ["lanchonete-api-sql"]
+    networks:
+      lanchonete-network:
+  
+
+  lanchonete-api-sql:
+    image: mcr.microsoft.com/azure-sql-edge
+    environment:
+      - "ACCEPT_EULA=1"
+      - "MSSQL_SA_PASSWORD=Lanchonete@123"
+    ports:
+      - "1433:1433"
+    volumes:
+      - "lanchonete-api-mssql-azure-edge:/var/opt/mssql"
+    networks:
+      lanchonete-network:
+        aliases:
+          - "sql"
+  
+
+volumes:
+  lanchonete-api-mssql-azure-edge:
+    
+
+networks:
+  lanchonete-network:
+    driver: bridge
