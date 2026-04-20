@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../../.gitignore" />
+    <File Path="../../README.md" />
+    <File Path="../docker-compose.yml" />
+    <File Path="../Dockerfile" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Lanchonete.Api/Lanchonete.Api.csproj" />
+    <Project Path="Lanchonete.Application/Lanchonete.Application.csproj" Id="51f8846f-56a3-4afa-89e7-7404bb0699ac" />
+    <Project Path="Lanchonete.Domain/Lanchonete.Domain.csproj" Id="478162c9-6cf6-490a-9787-75878d6d24bc" />
+    <Project Path="Lanchonete.Infra/Lanchonete.Infra.csproj" Id="4bd15c98-6209-4601-b998-cfb802cd8263" />
+  </Folder>
+</Solution>
