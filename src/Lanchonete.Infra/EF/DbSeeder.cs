@@ -8,20 +8,30 @@ public static class DbSeeder
 {
     public static async Task SeedAsync(LanchoneteContext context)
     {
-        if (await context.Set<Cardapio>().AnyAsync())
-            return;
-
         var itens = new List<Cardapio>
+    {
+        new(1, "X Burger", 5.00m, TipoItemCardapio.Sanduiche),
+        new(2, "X Egg", 4.50m, TipoItemCardapio.Sanduiche),
+        new(3, "X Bacon", 7.00m, TipoItemCardapio.Sanduiche),
+        new(4, "Batata frita", 2, TipoItemCardapio.Batata),
+        new(5, "Refrigerante", 2.5m, TipoItemCardapio.Refrigerante)
+    };
+
+        foreach (var item in itens)
         {
-            new("X Burger", 5.00m, TipoItemCardapio.Sanduiche),
-            new("X Egg", 4.50m, TipoItemCardapio.Sanduiche),
-            new("X Bacon", 7.00m, TipoItemCardapio.Sanduiche),
+            var existente = await context.Set<Cardapio>()
+                .FirstOrDefaultAsync(x => x.Id == item.Id);
 
-            new("Batata frita", 2.00m, TipoItemCardapio.Acompanhamento),
-            new("Refrigerante", 2.50m, TipoItemCardapio.Acompanhamento)
-        };
+            if (existente is null)
+            {
+                await context.AddAsync(item);
+            }
+            else
+            {
+                context.Entry(existente).CurrentValues.SetValues(item);
+            }
+        }
 
-        await context.AddRangeAsync(itens);
         await context.SaveChangesAsync();
     }
 }

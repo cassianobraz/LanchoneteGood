@@ -9,8 +9,9 @@ public class Cardapio
 
     protected Cardapio() { }
 
-    public Cardapio(string nome, decimal valor, TipoItemCardapio tipo)
+    public Cardapio(int id, string nome, decimal valor, TipoItemCardapio tipo)
     {
+        Id = id;
         Nome = nome;
         Valor = valor;
         Tipo = tipo;
@@ -20,5 +21,6 @@ public class Cardapio
 public enum TipoItemCardapio
 {
     Sanduiche = 1,
-    Acompanhamento = 2
+    Batata = 2,
+    Refrigerante = 3
 }

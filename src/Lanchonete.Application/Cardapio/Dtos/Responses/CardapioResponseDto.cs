@@ -8,6 +8,7 @@ public class CardapioResponseDto
 
 public class ItemCardapioDto
 {
+    public int Id { get; set; }
     public string Nome { get; set; }
     public decimal Valor { get; set; }
 }

@@ -12,8 +12,15 @@ public class CardapioRepository(LanchoneteContext context) : ICardapioRepository
     {
         return await _context.Set<Cardapio>()
             .AsNoTracking()
-            .OrderBy(x => x.Tipo)
+            .OrderBy(x => x.Id)
             .ThenBy(x => x.Nome)
             .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<Cardapio>> ObterPorIdsAsync(IEnumerable<int> ids, CancellationToken ct)
+    {
+        return await _context.Cardapio
+            .Where(x => ids.Contains(x.Id))
+            .ToListAsync(ct);
     }
 }
