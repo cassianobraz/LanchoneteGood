@@ -3,6 +3,7 @@ using Lanchonete.Infra.EF.DbCOntext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lanchonete.Infra.Migrations
 {
     [DbContext(typeof(LanchoneteContext))]
-    partial class LanchoneteContextModelSnapshot : ModelSnapshot
+    [Migration("20260421072355_CreateDBPedido")]
+    partial class CreateDBPedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

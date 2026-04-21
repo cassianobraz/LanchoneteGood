@@ -11,6 +11,11 @@ public class CardapioController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 
+    /// <summary>
+    /// Retorna a lista de itens do cardápio disponíveis para os clientes.
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(CardapioResponseDto), StatusCodes.Status200OK)]
     public async Task<IActionResult> ObterCardapio(CancellationToken ct)

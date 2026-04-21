@@ -1,5 +1,10 @@
 ﻿using Lanchonete.Application.Cardapio.Dtos.Requests;
+using Lanchonete.Application.Shared.Helper;
 using Lanchonete.Domain.Models.CardapioAggregate;
+using Lanchonete.Domain.Models.PedidoAggregate;
+using Lanchonete.Domain.Service;
+using Lanchonete.Domain.Service.Interfaces;
+using Lanchonete.Domain.Shared.interfaces;
 using Lanchonete.Infra.EF.DbCOntext;
 using Lanchonete.Infra.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +19,8 @@ public static class ServiceCollectionExtension
     {
         AddDbContextConfig(services, configuration);
         AddRepositories(services);
+        AddServices(services);
         AddHandlers(services);
-
         return services;
     }
 
@@ -31,6 +36,16 @@ public static class ServiceCollectionExtension
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<ICardapioRepository, CardapioRepository>();
+        services.AddScoped<IPedidoRepository, PedidoRepository>();
+    }
+    #endregion
+
+    #region Services
+    private static void AddServices(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IMemoryCacheHelper, MemoryCacheHelper>();
+        services.AddScoped<IPedidoService, PedidoService>();
     }
     #endregion
 
