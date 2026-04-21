@@ -11,4 +11,7 @@
     <Project Path="Lanchonete.Domain/Lanchonete.Domain.csproj" Id="478162c9-6cf6-490a-9787-75878d6d24bc" />
     <Project Path="Lanchonete.Infra/Lanchonete.Infra.csproj" Id="4bd15c98-6209-4601-b998-cfb802cd8263" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="../tests/Lanchonete.UnitTests/Lanchonete.UnitTests.csproj" Id="27d07271-905b-48f4-8d23-32b6f55dbff6" />
+  </Folder>
 </Solution>
