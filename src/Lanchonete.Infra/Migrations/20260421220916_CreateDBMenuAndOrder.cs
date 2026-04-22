@@ -5,11 +5,25 @@
 namespace Lanchonete.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDBPedido : Migration
+    public partial class CreateDBMenuAndOrder : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cardapio",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Tipo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cardapio", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Pedidos",
                 columns: table => new
@@ -60,6 +74,9 @@ namespace Lanchonete.Infra.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PedidoItens");
+
+            migrationBuilder.DropTable(
+                name: "Cardapio");
 
             migrationBuilder.DropTable(
                 name: "Pedidos");

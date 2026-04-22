@@ -9,13 +9,13 @@ public static class DbSeeder
     public static async Task SeedAsync(LanchoneteContext context)
     {
         var itens = new List<Cardapio>
-    {
-        new(1, "X Burger", 5.00m, TipoItemCardapio.Sanduiche),
-        new(2, "X Egg", 4.50m, TipoItemCardapio.Sanduiche),
-        new(3, "X Bacon", 7.00m, TipoItemCardapio.Sanduiche),
-        new(4, "Batata frita", 2, TipoItemCardapio.Batata),
-        new(5, "Refrigerante", 2.5m, TipoItemCardapio.Refrigerante)
-    };
+        {
+            new(1, "X Burger", 5.00m, TipoItemCardapio.Sanduiche),
+            new(2, "X Egg", 4.50m, TipoItemCardapio.Sanduiche),
+            new(3, "X Bacon", 7.00m, TipoItemCardapio.Sanduiche),
+            new(4, "Batata frita", 2.00m, TipoItemCardapio.Batata),
+            new(5, "Refrigerante", 2.50m, TipoItemCardapio.Refrigerante)
+        };
 
         foreach (var item in itens)
         {
@@ -24,7 +24,7 @@ public static class DbSeeder
 
             if (existente is null)
             {
-                await context.AddAsync(item);
+                await context.Set<Cardapio>().AddAsync(item);
             }
             else
             {

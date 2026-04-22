@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lanchonete.Infra.Migrations
 {
     [DbContext(typeof(LanchoneteContext))]
-    [Migration("20260421072355_CreateDBPedido")]
-    partial class CreateDBPedido
+    [Migration("20260421220916_CreateDBMenuAndOrder")]
+    partial class CreateDBMenuAndOrder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,8 @@ namespace Lanchonete.Infra.Migrations
             modelBuilder.Entity("Lanchonete.Domain.Models.CardapioAggregate.Cardapio", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()

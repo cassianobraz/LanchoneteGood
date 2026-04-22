@@ -24,11 +24,8 @@ namespace Lanchonete.Infra.Migrations
             modelBuilder.Entity("Lanchonete.Domain.Models.CardapioAggregate.Cardapio", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()

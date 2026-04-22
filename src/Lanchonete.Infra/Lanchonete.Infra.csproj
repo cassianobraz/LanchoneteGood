@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Lanchonete.Domain\Lanchonete.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

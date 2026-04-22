@@ -14,7 +14,7 @@ public class CardapioConfiguration : IEntityTypeConfiguration<Cardapio>
 
         builder.Property(x => x.Id)
             .HasColumnName("Id")
-            .ValueGeneratedOnAdd();
+            .ValueGeneratedNever();
 
         builder.Property(x => x.Nome)
             .HasColumnName("Nome")
