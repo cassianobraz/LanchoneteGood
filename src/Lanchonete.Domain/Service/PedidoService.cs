@@ -44,7 +44,7 @@ public class PedidoService(
 
     public async Task<ResultViewModel<bool>> AtualizarAsync(int id, IEnumerable<int> idsItensCardapio, CancellationToken ct)
     {
-        var pedido = await _pedidoRepository.ObterPorIdAsync(id, ct);
+        var pedido = await _pedidoRepository.ObterPorIdNTAsync(id, ct);
 
         if (pedido is null)
             return Failure(PedidoNaoEncontrado, TipoErro.NotFound);
@@ -71,7 +71,7 @@ public class PedidoService(
 
     public async Task<ResultViewModel<bool>> DeletarAsync(int id, CancellationToken ct)
     {
-        var pedido = await _pedidoRepository.ObterPorIdAsync(id, ct);
+        var pedido = await _pedidoRepository.ObterPorIdNTAsync(id, ct);
 
         if (pedido is null)
             return Failure(PedidoNaoEncontrado, TipoErro.NotFound);
@@ -93,7 +93,7 @@ public class PedidoService(
         return ResultViewModel<bool>.Success(true);
     }
 
-    private async Task<List<Cardapio>?> ObterItensCardapioAsync(List<int> ids, CancellationToken ct)
+    private async Task<List<ItemDoCardapio>?> ObterItensCardapioAsync(List<int> ids, CancellationToken ct)
     {
         var itensCardapio = (await _cardapioRepository.ObterPorIdsAsync(ids, ct)).ToList();
 
@@ -120,7 +120,7 @@ public class PedidoService(
         }
     }
 
-    private static void AdicionarItensAoPedido(Pedido pedido, IEnumerable<Cardapio> itensCardapio)
+    private static void AdicionarItensAoPedido(Pedido pedido, IEnumerable<ItemDoCardapio> itensCardapio)
     {
         foreach (var item in itensCardapio)
             pedido.AdicionarItem(item);

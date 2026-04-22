@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Lanchonete.Infra.EF.Configuration;
 
-public class CardapioConfiguration : IEntityTypeConfiguration<Cardapio>
+public class ItemDoCardapioConfiguration : IEntityTypeConfiguration<ItemDoCardapio>
 {
-    public void Configure(EntityTypeBuilder<Cardapio> builder)
+    public void Configure(EntityTypeBuilder<ItemDoCardapio> builder)
     {
-        builder.ToTable("Cardapio");
+        builder.ToTable("ItensDoCardapio");
 
         builder.HasKey(x => x.Id);
 

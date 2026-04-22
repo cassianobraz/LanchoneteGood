@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lanchonete.Infra.Migrations
 {
     [DbContext(typeof(LanchoneteContext))]
-    [Migration("20260421220916_CreateDBMenuAndOrder")]
-    partial class CreateDBMenuAndOrder
+    [Migration("20260422192235_CreateDBItensAndPedidos")]
+    partial class CreateDBItensAndPedidos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Lanchonete.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Lanchonete.Domain.Models.CardapioAggregate.Cardapio", b =>
+            modelBuilder.Entity("Lanchonete.Domain.Models.CardapioAggregate.ItemDoCardapio", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
@@ -46,7 +46,7 @@ namespace Lanchonete.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cardapio", (string)null);
+                    b.ToTable("ItensDoCardapio", (string)null);
                 });
 
             modelBuilder.Entity("Lanchonete.Domain.Models.PedidoAggregate.Pedido", b =>
@@ -88,7 +88,7 @@ namespace Lanchonete.Infra.Migrations
 
             modelBuilder.Entity("PedidoItens", b =>
                 {
-                    b.HasOne("Lanchonete.Domain.Models.CardapioAggregate.Cardapio", null)
+                    b.HasOne("Lanchonete.Domain.Models.CardapioAggregate.ItemDoCardapio", null)
                         .WithMany()
                         .HasForeignKey("CardapioId")
                         .OnDelete(DeleteBehavior.Restrict)

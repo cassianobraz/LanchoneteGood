@@ -8,7 +8,7 @@ public static class DbSeeder
 {
     public static async Task SeedAsync(LanchoneteContext context)
     {
-        var itens = new List<Cardapio>
+        var itens = new List<ItemDoCardapio>
         {
             new(1, "X Burger", 5.00m, TipoItemCardapio.Sanduiche),
             new(2, "X Egg", 4.50m, TipoItemCardapio.Sanduiche),
@@ -19,12 +19,12 @@ public static class DbSeeder
 
         foreach (var item in itens)
         {
-            var existente = await context.Set<Cardapio>()
+            var existente = await context.Set<ItemDoCardapio>()
                 .FirstOrDefaultAsync(x => x.Id == item.Id);
 
             if (existente is null)
             {
-                await context.Set<Cardapio>().AddAsync(item);
+                await context.Set<ItemDoCardapio>().AddAsync(item);
             }
             else
             {

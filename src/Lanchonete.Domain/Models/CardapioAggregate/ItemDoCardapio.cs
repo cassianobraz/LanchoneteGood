@@ -1,15 +1,15 @@
 ﻿namespace Lanchonete.Domain.Models.CardapioAggregate;
 
-public class Cardapio
+public class ItemDoCardapio
 {
     public int Id { get; private set; }
     public string Nome { get; private set; }
     public decimal Valor { get; private set; }
     public TipoItemCardapio Tipo { get; private set; }
 
-    protected Cardapio() { }
+    protected ItemDoCardapio() { }
 
-    public Cardapio(int id, string nome, decimal valor, TipoItemCardapio tipo)
+    public ItemDoCardapio(int id, string nome, decimal valor, TipoItemCardapio tipo)
     {
         Id = id;
         Nome = nome;

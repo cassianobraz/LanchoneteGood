@@ -9,14 +9,14 @@ public class LanchoneteContext : Microsoft.EntityFrameworkCore.DbContext
 {
     public LanchoneteContext(DbContextOptions<LanchoneteContext> options) : base(options) { }
 
-    public DbSet<Cardapio> Cardapio { get; set; }
+    public DbSet<ItemDoCardapio> ItensDoCardapio { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfiguration(new CardapioConfiguration());
+        modelBuilder.ApplyConfiguration(new ItemDoCardapioConfiguration());
         modelBuilder.ApplyConfiguration(new PedidoConfiguration()); 
     }
 }

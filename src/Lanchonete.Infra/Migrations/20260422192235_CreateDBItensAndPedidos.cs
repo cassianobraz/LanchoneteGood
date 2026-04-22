@@ -5,13 +5,13 @@
 namespace Lanchonete.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDBMenuAndOrder : Migration
+    public partial class CreateDBItensAndPedidos : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Cardapio",
+                name: "ItensDoCardapio",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -21,7 +21,7 @@ namespace Lanchonete.Infra.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cardapio", x => x.Id);
+                    table.PrimaryKey("PK_ItensDoCardapio", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,9 +50,9 @@ namespace Lanchonete.Infra.Migrations
                 {
                     table.PrimaryKey("PK_PedidoItens", x => new { x.PedidoId, x.CardapioId });
                     table.ForeignKey(
-                        name: "FK_PedidoItens_Cardapio_CardapioId",
+                        name: "FK_PedidoItens_ItensDoCardapio_CardapioId",
                         column: x => x.CardapioId,
-                        principalTable: "Cardapio",
+                        principalTable: "ItensDoCardapio",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -76,7 +76,7 @@ namespace Lanchonete.Infra.Migrations
                 name: "PedidoItens");
 
             migrationBuilder.DropTable(
-                name: "Cardapio");
+                name: "ItensDoCardapio");
 
             migrationBuilder.DropTable(
                 name: "Pedidos");

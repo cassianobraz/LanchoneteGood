@@ -7,8 +7,8 @@ public class Pedido
 {
     public int Id { get; private set; }
 
-    private readonly List<Cardapio> _itens = new();
-    public IReadOnlyCollection<Cardapio> Itens => _itens;
+    private readonly List<ItemDoCardapio> _itens = new();
+    public IReadOnlyCollection<ItemDoCardapio> Itens => _itens;
 
     public decimal Subtotal { get; private set; }
     public decimal Desconto { get; private set; }
@@ -21,7 +21,7 @@ public class Pedido
         Id = id;
     }
 
-    public void AdicionarItem(Cardapio item)
+    public void AdicionarItem(ItemDoCardapio item)
     {
         if (_itens.Any(i => i.Tipo == item.Tipo))
             throw new ItemDuplicadoPedidoException();
@@ -29,7 +29,7 @@ public class Pedido
         _itens.Add(item);
     }
 
-    public void AtualizarItens(IEnumerable<Cardapio> itens)
+    public void AtualizarItens(IEnumerable<ItemDoCardapio> itens)
     {
         _itens.Clear();
 

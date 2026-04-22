@@ -73,7 +73,7 @@ public sealed class PedidoTests
 
         _cardapioRepository
             .Setup(x => x.ObterPorIdsAsync(ids, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new List<Cardapio> { CriarSanduiche(1), CriarBatata(4) });
+            .ReturnsAsync(new List<ItemDoCardapio> { CriarSanduiche(1), CriarBatata(4) });
 
         // Act
         var result = await _sut.CriarAsync(ids, CancellationToken.None);
@@ -95,7 +95,7 @@ public sealed class PedidoTests
 
         _cardapioRepository
             .Setup(x => x.ObterPorIdsAsync(ids, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new List<Cardapio>
+            .ReturnsAsync(new List<ItemDoCardapio>
             {
                 CriarBatata(4),
                 CriarRefrigerante(5)
@@ -118,10 +118,10 @@ public sealed class PedidoTests
 
         _cardapioRepository
             .Setup(x => x.ObterPorIdsAsync(ids, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new List<Cardapio>
+            .ReturnsAsync(new List<ItemDoCardapio>
             {
                 CriarBatata(4),
-                new Cardapio(5, "Outra Batata", 3m, TipoItemCardapio.Batata)
+                new ItemDoCardapio(5, "Outra Batata", 3m, TipoItemCardapio.Batata)
             });
 
         // Act
@@ -142,7 +142,7 @@ public sealed class PedidoTests
 
         _cardapioRepository
             .Setup(x => x.ObterPorIdsAsync(ids, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new List<Cardapio>
+            .ReturnsAsync(new List<ItemDoCardapio>
             {
                 CriarSanduiche(1),
                 CriarBatata(4),
@@ -175,7 +175,7 @@ public sealed class PedidoTests
     {
         // Arrange
         _pedidoRepository
-            .Setup(x => x.ObterPorIdAsync(1, It.IsAny<CancellationToken>()))
+            .Setup(x => x.ObterPorIdNTAsync(1, It.IsAny<CancellationToken>()))
             .ReturnsAsync((Pedido?)null);
 
         // Act
@@ -194,7 +194,7 @@ public sealed class PedidoTests
         var pedido = new Pedido(1);
 
         _pedidoRepository
-            .Setup(x => x.ObterPorIdAsync(1, It.IsAny<CancellationToken>()))
+            .Setup(x => x.ObterPorIdNTAsync(1, It.IsAny<CancellationToken>()))
             .ReturnsAsync(pedido);
 
         // Act
@@ -218,12 +218,12 @@ public sealed class PedidoTests
         var novosIds = new List<int> { 1, 5 };
 
         _pedidoRepository
-            .Setup(x => x.ObterPorIdAsync(1, It.IsAny<CancellationToken>()))
+            .Setup(x => x.ObterPorIdNTAsync(1, It.IsAny<CancellationToken>()))
             .ReturnsAsync(pedido);
 
         _cardapioRepository
             .Setup(x => x.ObterPorIdsAsync(novosIds, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new List<Cardapio>
+            .ReturnsAsync(new List<ItemDoCardapio>
             {
                 CriarSanduiche(1),
                 CriarRefrigerante(5)
@@ -250,7 +250,7 @@ public sealed class PedidoTests
     {
         // Arrange
         _pedidoRepository
-            .Setup(x => x.ObterPorIdAsync(1, It.IsAny<CancellationToken>()))
+            .Setup(x => x.ObterPorIdNTAsync(1, It.IsAny<CancellationToken>()))
             .ReturnsAsync((Pedido?)null);
 
         // Act
@@ -268,7 +268,7 @@ public sealed class PedidoTests
         var pedido = new Pedido(1);
 
         _pedidoRepository
-            .Setup(x => x.ObterPorIdAsync(1, It.IsAny<CancellationToken>()))
+            .Setup(x => x.ObterPorIdNTAsync(1, It.IsAny<CancellationToken>()))
             .ReturnsAsync(pedido);
 
         _pedidoRepository
@@ -289,12 +289,12 @@ public sealed class PedidoTests
         _unitOfWork.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    private static Cardapio CriarSanduiche(int id)
+    private static ItemDoCardapio CriarSanduiche(int id)
         => new(id, "X Burger", 5m, TipoItemCardapio.Sanduiche);
 
-    private static Cardapio CriarBatata(int id)
+    private static ItemDoCardapio CriarBatata(int id)
         => new(id, "Batata frita", 2m, TipoItemCardapio.Batata);
 
-    private static Cardapio CriarRefrigerante(int id)
+    private static ItemDoCardapio CriarRefrigerante(int id)
         => new(id, "Refrigerante", 2.5m, TipoItemCardapio.Refrigerante);
 }

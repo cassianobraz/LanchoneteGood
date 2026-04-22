@@ -15,9 +15,18 @@ public class PedidoRepository(LanchoneteContext context) : IPedidoRepository
             .FirstOrDefaultAsync(p => p.Id == id, ct);
     }
 
+    public async Task<Pedido?> ObterPorIdNTAsync(int id, CancellationToken ct)
+    {
+        return await _context.Pedidos
+            .AsNoTracking()
+            .Include(p => p.Itens)
+            .FirstOrDefaultAsync(p => p.Id == id, ct);
+    }
+
     public async Task<IEnumerable<Pedido>> ListarTodosAsync(CancellationToken ct)
     {
         return await _context.Pedidos
+            .AsNoTracking()
             .Include(p => p.Itens)
             .ToListAsync(ct);
     }

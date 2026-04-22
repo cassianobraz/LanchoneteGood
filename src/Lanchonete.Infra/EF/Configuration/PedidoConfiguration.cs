@@ -38,7 +38,7 @@ public class PedidoConfiguration : IEntityTypeConfiguration<Pedido>
             .UsingEntity<Dictionary<string, object>>(
                 "PedidoItens",
                 j => j
-                    .HasOne<Cardapio>()
+                    .HasOne<ItemDoCardapio>()
                     .WithMany()
                     .HasForeignKey("CardapioId")
                     .OnDelete(DeleteBehavior.Restrict),

@@ -2,6 +2,6 @@
 
 public interface ICardapioRepository
 {
-    Task<IEnumerable<Cardapio>> ListarAsync(CancellationToken cancellationToken);
-    Task<IEnumerable<Cardapio>> ObterPorIdsAsync(IEnumerable<int> ids, CancellationToken ct);
+    Task<IEnumerable<ItemDoCardapio>> ListarAsync(CancellationToken cancellationToken);
+    Task<IEnumerable<ItemDoCardapio>> ObterPorIdsAsync(IEnumerable<int> ids, CancellationToken ct);
 }
